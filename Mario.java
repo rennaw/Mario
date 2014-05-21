@@ -1,11 +1,11 @@
-import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Scanner;
 
 /**
  * Created by Dana on 5/11/2014.
  */
+
+
 public class Mario {
 
 
@@ -13,7 +13,7 @@ public class Mario {
 
         public static void main (String[] args) throws IOException{
 
-            int height;
+            int height, choice;
 
 
 
@@ -25,35 +25,49 @@ public class Mario {
                 height = in.nextInt();
 
                 if ((height <= 1) || (height > 23))
-                    System.out.println("ERROR Please enter a valid number\n");
+                    System.out.println("ERROR Please enter a valid number: ");
                 else
                     break;
             }
 
+            System.out.println("Enter 1 to see results on console. Enter 2 if you want the results in a file.");
+            Scanner result = new Scanner(System.in);
+            choice = result.nextInt();
+
+            if (choice == 1){
 
 
-            File file = new File("mario.txt");
-            PrintWriter output = new PrintWriter(file);
+            }
+            else
+                break;
+
+
+
+
+//            File file = new File("mario.txt");
+//            PrintWriter output = new PrintWriter(file);
 
             for (int i = 1; i <= height; i++) {
 //            print spaces
                 for (int s = height - i; s > 0; s--) {
                     System.out.print(" ");
-                    output.print(" ");
+//                    output.print(" ");
                 }
 
 //          print hashes
                 for (int j = 0; j <= i; j++) {
                     System.out.print("#");
-                    output.print("#");
+//                    output.print("#");
 
                 }
                 //print new_line
                 System.out.print("\n");
-                output.print("\n");
+//                output.print("\n");
             }
-            output.close();
+//            output.close();
+
         }
+
 
 }
 
