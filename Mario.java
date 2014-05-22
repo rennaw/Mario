@@ -1,4 +1,6 @@
+import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 /**
@@ -35,36 +37,44 @@ public class Mario {
             choice = result.nextInt();
 
             if (choice == 1){
-
-
-            }
-            else
-                break;
-
-
-
-
-//            File file = new File("mario.txt");
-//            PrintWriter output = new PrintWriter(file);
-
-            for (int i = 1; i <= height; i++) {
+                for (int i = 1; i <= height; i++) {
 //            print spaces
-                for (int s = height - i; s > 0; s--) {
-                    System.out.print(" ");
-//                    output.print(" ");
-                }
+                    for (int s = height - i; s > 0; s--) {
+                        System.out.print(" ");
+                    }
 
 //          print hashes
-                for (int j = 0; j <= i; j++) {
-                    System.out.print("#");
-//                    output.print("#");
-
+                    for (int j = 0; j <= i; j++) {
+                        System.out.print("#");
+                    }
+                    //print new_line
+                    System.out.print("\n");
                 }
-                //print new_line
-                System.out.print("\n");
-//                output.print("\n");
+
             }
-//            output.close();
+
+            if (choice == 2) {
+
+
+                File file = new File("mario.txt");
+                PrintWriter output = new PrintWriter(file);
+
+                for (int i = 1; i <= height; i++) {
+//            print spaces
+                    for (int s = height - i; s > 0; s--) {
+                        output.print(" ");
+                    }
+
+//          print hashes
+                    for (int j = 0; j <= i; j++) {
+                        output.print("#");
+
+                    }
+                    //print new_line
+                    output.print("\n");
+                }
+                output.close();
+            }
 
         }
 
