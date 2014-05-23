@@ -13,7 +13,7 @@ public class Mario {
 
 
 
-        public static void main (String[] args) throws IOException{
+        public static void main (String[] args){
 
             int height, choice;
 
@@ -55,9 +55,9 @@ public class Mario {
 
             if (choice == 2) {
 
-
-                File file = new File("mario.txt");
-                PrintWriter output = new PrintWriter(file);
+                try {
+                    File file = new File("mario.txt");
+                    PrintWriter output = new PrintWriter(file);
 
                 for (int i = 1; i <= height; i++) {
 //            print spaces
@@ -74,6 +74,12 @@ public class Mario {
                     output.print("\n");
                 }
                 output.close();
+            }catch (IOException e){
+                    System.out.println("Your file was not created");
+                }
+             finally {
+                    System.out.println("Continue");
+                }
             }
 
         }
