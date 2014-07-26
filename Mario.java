@@ -1,6 +1,4 @@
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
+
 import java.util.Scanner;
 
 /**
@@ -11,55 +9,40 @@ import java.util.Scanner;
 public class Mario {
 
 
-    public static final String POUND = "#";
-    public static final String SPACE = " ";
-    public static final String NEW_LINE = "\n";
-
     public static void main(String[] args) {
+        String output_choice;
+        int height;
 
-        int height, choice;
+        Scanner input = new Scanner(System.in);
 
+        do {
+            System.out.print("Height: ");
+            height = input.nextInt();
+        }while ((height<0) || (height>23));
 
-        while (true) {
-            System.out.println("Give me a number between 0 and 23: ");
-            Scanner in = new Scanner(System.in);
+        do {
+            System.out.print("(c)onsole or (f)ile:");
+            output_choice = input.next();
+        }while (!((output_choice.equals("c")) || (output_choice.equals("f"))));
 
-            height = in.nextInt();
+        MarioPrinter choice = (output_choice.equals("f")) ? new FilePrinter("out.txt") : new ConsolePrinter();
 
-            if ((height <= 1) || (height > 23))
-                System.out.println("ERROR Please enter a valid number: ");
-            else
-                break;
-        }
+        StringBuilder sb = new StringBuilder();
 
-        System.out.println("Enter 1 to see results on console. Enter 2 if you want the results in a file.");
-        Scanner result = new Scanner(System.in);
-        choice = result.nextInt();
-
-        MarioPrinter printer = null;
-        if (choice == 1) {
-            printer = new ConsolePrinter();
-        } else {
-            printer = new UpperCasePrinter();
-        }
-            for (int i = 1; i <= height; i++) {
-//            print spaces
-                for (int s = height - i; s > 0; s--) {
-                    printer.print(SPACE);
+        for( int y = 0; y < height; y++) {
+            for ( int x = height ; x > 0; x--) {
+                if ((x-1)>y) {
+                    sb.append(" ");
                 }
-
-//          print hashes
-                for (int j = 0; j <= i; j++) {
-                    printer.print(POUND);
+                else {
+                    sb.append("#");
                 }
-                //print new_line
-                printer.print(NEW_LINE);
             }
-
+            sb.append("#\n");
         }
-
+        choice.print(sb);
     }
-
-
 }
+
+
 

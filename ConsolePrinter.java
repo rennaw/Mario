@@ -3,7 +3,7 @@
  */
 public class ConsolePrinter implements MarioPrinter {
 
-    public void print(String text) {
-        System.out.print(text);
+    public void print(StringBuilder msg) {
+        System.out.print(msg);
     }
 }
