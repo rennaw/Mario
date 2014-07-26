@@ -4,31 +4,27 @@ import java.io.*;
  * Created by dana on 7/14/14.
  */
 public class FilePrinter implements MarioPrinter{
-    FileOutputStream fos = null;
+    PrintWriter output = null;
+    String filename;
 
-    // save original output
-    PrintStream std = System.out;
-
-    public FilePrinter(String filename) {
+    public FilePrinter(String f) {
+        filename = f;
         try {
 
             // setup the file to redirect to
             File file = new File(filename);
-            fos = new FileOutputStream(file);
+            output = new PrintWriter(file);
+            output.print(msg);
+            output.close();
 
-            // replace the System.out, redirect to the file
-            PrintStream ps = new PrintStream(fos);
-            System.setOut(ps);
+
+
         } catch (IOException e) {
             // use the original output stream to output
-            std.println("There was a problem finding the file " + e.getMessage());
+            System.out.println("An I/O error occurred " + e.getMessage());
         } finally {
-            if (fos != null) {
-                try {
-                    fos.close();
-                } catch (IOException e) {
-                    std.println("There was a problem closing the file " + e.getMessage());
-                }
+            if (output != null) {
+                output.close();
             }
         }
     }

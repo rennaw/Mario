@@ -16,16 +16,16 @@ public class Mario {
         Scanner input = new Scanner(System.in);
 
         do {
-            System.out.print("Height: ");
+            System.out.print("Enter a height between 0 and 23: ");
             height = input.nextInt();
         }while ((height<0) || (height>23));
 
         do {
-            System.out.print("(c)onsole or (f)ile:");
+            System.out.print("(1) for console or (2) for file:");
             output_choice = input.next();
-        }while (!((output_choice.equals("c")) || (output_choice.equals("f"))));
+        }while (!((output_choice.equals("1")) || (output_choice.equals("2"))));
 
-        MarioPrinter choice = (output_choice.equals("f")) ? new FilePrinter("out.txt") : new ConsolePrinter();
+        MarioPrinter choice = (output_choice.equals("1")) ? new FilePrinter("mario.txt") : new ConsolePrinter();
 
         StringBuilder sb = new StringBuilder();
 
